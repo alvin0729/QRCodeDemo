@@ -66,10 +66,13 @@
 
 - (void)longPressAction:(UIGestureRecognizer*)gesture
 {
+
     [QRCodeHelper recognizeImage:_qImageView.image block:^(ZXBarcodeFormat barcodeFormat, NSString *str) {
         UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:str delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
         [view show];
     }];
+    UIImageWriteToSavedPhotosAlbum(_qImageView.image, nil, nil, nil);
+
 }
 
 
