@@ -71,7 +71,7 @@
         UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:str delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
         [view show];
     }];
-    UIImageWriteToSavedPhotosAlbum(_qImageView.image, nil, nil, nil);
+    UIImageWriteToSavedPhotosAlbum(_qImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 
 }
 
@@ -109,6 +109,16 @@
 //        
 //        NSLog(@"%@",scanResult);
 //    }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+{
+    NSLog(@"%@",image);
+    if (!error) {
+        NSLog(@"保存成功");
+    }else{
+        NSLog(@"保存失败");
+    }
 }
 
 @end
